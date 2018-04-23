@@ -1,0 +1,23 @@
+.outer {
+  width: 50%;
+  height: 20em;
+  background-color: red;
+}
+
+.inner {
+  width: 100px;
+  height: 320px;
+  background-color: blue;
+}
+
+p:nth-child(1) {
+	background-color: hsl(0,100%,50%);
+}
+
+p:nth-child(2) {
+	background-color: hsl(240,100%,50%);
+}
+
+p:nth-child(3) {
+	background-color: hsl(276,100%,85%);
+}
