@@ -5,13 +5,53 @@
   <head>
   <meta charset="utf-8">
   <title>My gist</title>
+  
+  <style>
+    img {
+	top: 0px;
+	left:0px;
+	position: absolute;
+	z-index: -1; 
+	}
+	
+
+	
+	.divElement{
+    position:relative;
+    width:100px;
+    height:100px;
+    background:red;
+    left:0px;
+    top:0px;
+	
+	.gist {
+	 position: absolute !important;
+	  left: 100px  !important;
+	
+	
+	}
+	
+	
+  
+  </style>
+  
+  
+  
   </head>
   
   
   <body>
-  <p>This is my first gist: </p>
+  <div>
+    <h1 class="header">This is my first gist: </h2>
+    <img src="tayo.jpg">
+  </div>
+  <!-- <div class="divElement"></div> -->
+  <!-- <div class="divElement"></div> -->
+  <!-- <div class="divElement"></div> -->
   
-  <embed><script src="https://gist.github.com/Adam-Wallenrod/80ab1d61867d51e9ca80b251e1d67418.js"></script></embed>
+  
+  <div class="gist"><script src="https://gist.github.com/Adam-Wallenrod/80ab1d61867d51e9ca80b251e1d67418.js"></script></div>
+ 
   
   </body>
 
