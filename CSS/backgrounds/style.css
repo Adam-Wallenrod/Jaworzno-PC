@@ -1,0 +1,32 @@
+p {
+	background-color: yellow;
+	padding: 40px;
+	background-image: url(https://mdn.mozillademos.org/files/13026/fire-ball-icon.png);
+	background-repeat: no-repeat;
+	background-position: 95% center;
+}
+
+p.two {
+	background-image: linear-gradient(to right, yellow, orange); 
+	
+}
+
+p.three {
+	background-image: linear-gradient(to right, yellow, orange 40%, red 60%, yellow);
+	
+}
+
+
+p.four {
+	
+	background-image: repeating-linear-gradient(to right, yellow, orange 100px, yellow 200px );
+}
+
+
+p.five {
+	
+	
+	background: url(https://mdn.mozillademos.org/files/13026/fire-ball-icon.png) no-repeat 95% center, linear-gradient(to right, yellow, blue 50%, yellow); 
+    background-color: yellow;
+	
+	}
