@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mouse postion</title>
+  <style>
+    canvas { background: #eee; display: block; margin: 30px auto; }
+	
+	/*div {display: inline-block;}*/
+	
+	
+  </style>
+  
+</head>
+
+
+<body>
+  
+  <div>Mouse horizontal position: <div class="position"></div></div>
+  <div>relativeX: <div class="direction"></div><div>
+
+
+  <canvas id="myCanvas" width="480" height="320"></canvas>
+
+
+<script>
+var posMouseX = document.querySelector(".position");
+var direction = document.querySelector(".direction");
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+var paddleHeight = 10;
+var paddleWidth = 75;
+var paddleX = (canvas.width - paddleWidth)/2;
+var paddleY = canvas.height - paddleHeight;
+
+
+document.addEventListener("mousemove", mouseMoveHandler, false);
+
+function mouseMoveHandler(e) {
+   posMouseX.textContent = e.clientX;
+   var relativeX = e.clientX - canvas.offsetLeft;
+   direction.textContent = relativeX;
+   
+   if(relativeX > 0 && relativeX < canvas.width){
+    paddleX = relativeX - paddleWidth/2;
+     
+   }
+}
+
+
+function drawPaddle(){
+  ctx.beginPath();
+  ctx.rect(paddleX, paddleY, paddleWidth, paddleHeight);
+  ctx.fillStyle = "#0095DD";
+  ctx.fill();
+  ctx.closePath();
+}   
+
+
+function draw(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height );
+  drawPaddle();
+
+}
+
+setInterval(draw, 10);
+
+
+
+
+</script>
+
+
+</body>
+
+</html>
