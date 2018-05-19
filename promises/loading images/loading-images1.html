@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8">
+  <title>Loading images - recursion</title>
+
+  <style>
+    img {
+    height:237px;
+    width: 400px;
+    background: url(spinner.gif) no-repeat center;
+    background-size: 5rem 5rem;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+  </style>
+
+</head>
+
+<body>
+
+
+  <!-- <div id="myPicture"> -->
+
+  <!-- </div> -->
+
+  <img src="1" id="myPicture">
+
+
+
+  <script>
+    var myUrl = 'https://mdn.mozillademos.org/files/13340/butterfly.jpg';
+
+    function getImage(url) {
+	  return new Promise(function(resolve, reject) {
+	    var img = new Image();
+		img.onload = function() {
+		  console.log('img loaded');
+		  resolve(url);
+		}
+	    img.onerror = function() {
+		  reject(url);
+		}
+	  img.src = url;
+	});
+
+  }
+
+  getImage(myUrl).then(
+    function(success){
+      document.getElementById('myPicture').src = success;
+    }).catch(function(error){
+	  console.log('Error loading: ' + error);
+    });
+
+  </script>
+
+
+</body>
+
+
+
+
+</html>

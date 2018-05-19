@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8">
+  <title>Loading images - chaining promises</title>
+
+  <style>
+    img {
+    height:80px;
+    width: 80px;
+    background: url(spinner.gif) no-repeat center;
+    background-size: 5rem 5rem;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+  </style>
+
+</head>
+
+<body>
+
+  <div id="myPictures"></div>
+
+  <button id="myBtn">Show puppies</button>
+
+  <script>
+
+  var url1 = 'http://www.javascriptkit.com/javatutors/dog1.png';
+	var url2 = 'http://www.javascriptkit.com/javatutors/dog2.png';
+	var url3 = 'http://www.javascriptkit.com/javatutors/dog3.png';
+	var url4 = 'http://www.javascriptkit.com/javatutors/dog4.png';
+	var url5 = 'http://www.javascriptkit.com/javatutors/dog5.png';
+
+  var myPictures = document.getElementById('myPictures');
+	var doggies = [url1, url2, url3, url4, url5];
+
+  var btn = document.getElementById("myBtn");
+
+
+	 function getImage(url) {
+	  return new Promise(function(resolve, reject) {
+	    var img = new Image();
+		img.onload = function() {
+		//  console.log('img loaded');
+		  resolve(url);
+		}
+	    img.onerror = function() {
+		  reject(url);
+		}
+	  img.src = url;
+	});
+
+  }
+
+ /*
+	function displayImages(images){
+	  var targetImage = images.shift();
+	  if(targetImage){
+	    getImage(targetImage).then(function(url){
+		  var dog = document.createElement('img');
+		  dog.setAttribute('src', url);
+		  myPictures.appendChild(dog);
+		  displayImages(images)
+		}).catch(function(badUrl){
+		    console.log('Error loading ' + badUrl);
+			displayImages(images);
+		});
+	  }
+
+	}
+  */
+
+/*CHAIN OF PROMISES*/
+/*
+  getImage(url1).then(function(url){
+    console.log(url + ' fetched!');
+    return getImage(url2);
+  }).then(function(url){
+    console.log(url + ' fetched!');
+  });
+
+*/
+
+/*CHAIN OF PROMISES WITH HANDLER - CATCH*/
+/*
+getImage('baddog.png').then(function(url){
+     console.log(url + ' fetched!');
+}).catch(function(url){
+     console.log(url + ' failed to load!');
+}).then(function(){
+     return getImage(url1);
+}).then(function(url){
+     console.log(url + ' fetched!');
+}).catch(function(url) {
+     console.log(url + 'failed to load!');
+});
+
+*/
+
+/*SEQUANCE OF PROMISES - Promise.resolve()*/
+/*
+var sequence = Promise.resolve();
+
+doggies.forEach(function(targetImage){
+      sequance = sequence.then(function(){
+      return getImage(targetImage);
+  }).then(function(url){
+      console.log(url + ' fetched!');
+  }).catch(function(err) {
+      console.log(err + ' failed to load!');
+  });
+});
+*/
+
+
+
+
+/*SEQUANCE OF PROMISES - Promise.resolve() (without using forEach() method */
+
+var sequence = Promise.resolve();
+
+for (var i=0; i<doggies.length; i++){
+    (function(){ // define closure to capture i at each step of loop
+        var capturedindex = i;
+        sequence = sequence.then(function(){
+            return getImage(doggies[capturedindex]);
+        }).then(function(url){
+            console.log(url + ' fetched!');
+        }).catch(function(err){
+            console.log('Error loading ' + err);
+        })
+    }()); // invoke closure function immediately
+};
+
+
+// btn.addEventListener("click", function() {displayImages(doggies);} );
+	//displayImages(doggies);
+
+  </script>
+
+</body>
+
+
+</html>
