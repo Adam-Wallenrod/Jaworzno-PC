@@ -28,7 +28,7 @@
 
   <script>
 
-  var url1 = 'http://www.javascriptkit.com/javatutors/dog1.png';
+    var url1 = 'http://www.javascriptkit.com/javatutors/dog1.png';
 	var url2 = 'http://www.javascriptkit.com/javatutors/dog2.png';
 	var url3 = 'http://www.javascriptkit.com/javatutors/dog3.png';
 	var url4 = 'http://www.javascriptkit.com/javatutors/dog4.png';
@@ -119,7 +119,7 @@ doggies.forEach(function(targetImage){
 
 
 /*SEQUANCE OF PROMISES - Promise.resolve() (without using forEach() method */
-
+/*
 var sequence = Promise.resolve();
 
 for (var i=0; i<doggies.length; i++){
@@ -134,9 +134,32 @@ for (var i=0; i<doggies.length; i++){
         })
     }()); // invoke closure function immediately
 };
+*/
+
+/*ARRAY OF PROMISES */
+
+var doggyPromises = doggies.map(getImage);
+var sequence = Promise.resolve();
 
 
-// btn.addEventListener("click", function() {displayImages(doggies);} );
+
+
+function displayImages() {
+    doggyPromises.forEach(function(curPromise){
+    sequence = sequence.then(function() {
+      return curPromise;
+    }).then(function(url){
+      var dog = document.createElement('img');
+	  dog.setAttribute('src', url);
+      myPictures.appendChild(dog);
+    }).catch(function (err) {
+      console.log(err + ' failed to load!');
+    });
+  });
+
+}
+
+ btn.addEventListener("click", function() {displayImages();} );
 	//displayImages(doggies);
 
   </script>
