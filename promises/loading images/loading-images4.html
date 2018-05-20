@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8">
+  <title>Loading images - chaining promises</title>
+
+  <style>
+    img {
+    height:80px;
+    width: 80px;
+    background: url(spinner.gif) no-repeat center;
+    background-size: 5rem 5rem;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+  </style>
+
+</head>
+
+<body>
+
+  <div id="myPictures"></div>
+
+  <button id="myBtn">Show puppies</button>
+
+  <script>
+
+    var url1 = 'http://www.javascriptkit.com/javatutors/dog1.png';
+	var url2 = 'http://www.javascriptkit.com/javatutors/dog2.png';
+	var url3 = 'http://www.javascriptkit.com/javatutors/dog3.png';
+	var url4 = 'http://www.javascriptkit.com/javatutors/dog4.png';
+	var url5 = 'http://www.javascriptkit.com/javatutors/dog5.png';
+
+  var myPictures = document.getElementById('myPictures');
+  var doggies = [url1, url2, url3, url4, url5];
+
+  var btn = document.getElementById("myBtn");
+
+  
+  /*
+  function getImage(url){
+    var myPromise = new Promise(function(resolve, reject){
+        var img = new Image()
+		img.src = url
+        img.onload = function(){
+            var succ = 'finished';
+	        resolve(succ);
+        }
+        img.onerror = function(){
+             var err = 'error';
+	         reject(err);
+        }
+        
+    })
+	
+	return myPromise;
+}
+  */
+  
+  function getImage(url) {
+    var myPromise = new Promise(function(resolve, reject) {
+	 var myImg = new Image();
+	 myImg.src = url;
+	 myImg.onload = function() {
+	   var s = url;
+	   resolve(s);
+	 }
+	 
+	 myImg.onerror = function() {
+	   var e = 'failed';
+	   reject(url);
+	 }
+	});
+    return myPromise;
+  };
+  
+  
+  /*
+  getImage(url1).then(function(success) {
+    var myImg = document.createElement('img');
+    myImg.src = success;
+	myPictures.appendChild(myImg);
+	console.log('img loaded');
+  }).catch(function(err) {
+    console.log('Error loading: ' +err);  
+  
+  })
+  */
+  
+  var sequence = Promise.resolve();
+  
+  
+  doggies.forEach(function (targetImage){
+    sequence = sequence.then(function() {
+	  return getImage(targetImage);
+	}).then(function(url) {
+	  console.log('fetched!');
+	  var myImg = document.createElement('img');
+	  myImg.src = url;
+	  myPictures.appendChild(myImg);
+      console.log('and ' + url + ' loaded'); 
+	}).catch(function(err){
+	    console.log(err + ' failed to load!');
+	
+	
+	}) 
+  
+  
+  
+  
+  });
+  
+
+
+
+ /*
+  getImage(url1).then(function(s) {
+    console.log(s);
+  }).catch(function(e) {
+    console.log(e);
+  });
+  
+  */
+  
+  console.log('Koniec');
+
+ // btn.addEventListener('click', getImage(url1));
+
+  </script>
+
+</body>
+
+
+</html>
