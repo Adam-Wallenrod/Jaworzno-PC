@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Local/session storage vs cookie</title>
+
+  
+
+</head>
+
+<body>
+
+
+
+  <script>
+    console.log('local storage created');
+    localStorage.setItem('breakfast', 'becon');
+	console.log(localStorage.getItem('breakfast'));
+	//localStorage.removeItem('breakfast');
+	
+	
+	console.log('session storage created');
+    sessionStorage.setItem('dinner', 'pizza');
+	console.log(sessionStorage.getItem('dinner'));
+	//sessionStorage.clear();
+	
+	console.log('created cookie');
+	document.cookie = "username=John Doe"; 
+	
+	console.log('created cookie which expires');
+	document.cookie = "myCookie=hello_world; expires=Mon, 21 May 2018 23:59:59 GMT";
+	
+	console.log('created cookie which expires with a path');
+	document.cookie = "mySweetCookie=salt; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/test";
+	console.log(document.cookie);
+	
+  </script>
+
+</body>
+
+
+</html>
