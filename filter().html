@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Filter() method</title>
+	
+
+  </head>
+
+  
+  
+  <body>
+    <article>Check your console</article>
+	
+	
+
+  </body>
+
+    <script>
+	
+      function isBigEnough(value){
+	    return value >= 10;
+	  }
+	  
+	  
+	  
+	  function deleteUser(selectedArray, user){
+	    users = selectedArray.filter(h => h!==user);
+	  }
+	  
+	  
+	  var myArray = [12, 5, 8, 130, 44];
+	  var filtered = myArray.filter(isBigEnough);
+	  
+	  console.log('This is myArray: ' + myArray);
+	  console.log('And this is filtered array with values bigger than 10: ' + filtered);
+	  
+	  
+	  var users = ['Pawel', 'Fifi', 'Ala'];
+	  var selectedUser = 'Pawel';
+	  
+	  console.log('Users: ' + users);
+	  
+	  
+	  
+	  deleteUser(users, 'Pawel');
+	  
+	  console.log('After executing delete function: ' + users);
+	
+    </script>
+</html>
