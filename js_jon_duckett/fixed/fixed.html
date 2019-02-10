@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>auto vs fixed</title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+        }
+
+        .tableA {
+            width: 100%;
+        }
+
+        .tableB {
+            width: 100%;
+            table-layout: fixed;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<h2>table-layout: auto</h2>
+
+<table class="tableA">
+    <tr>
+        <th>Label</th>
+        <th>Data</th>
+    </tr>
+
+    <tr>
+        <td>Date</td>
+        <td>01.01.2019 13:00 - 31.12.2019 23:59</td>
+    </tr>
+
+    <tr>
+        <td>Value1</td>
+        <td>(sample value)</td>
+    </tr>
+
+    <tr>
+        <td>Value2</td>
+        <td>(sample value), (sample value),
+        </td>
+    </tr>
+
+    <tr>
+        <td>Value3</td>
+        <td>(sample value), (sample value), (sample value)</td>
+    </tr>
+</table>
+
+<br>
+<hr>
+<br>
+
+<table class="tableB">
+    <tr>
+        <th>Label</th>
+        <th>Data</th>
+    </tr>
+
+    <tr>
+        <td>Date</td>
+        <td>01.01.2019 13:00 - 31.12.2019 23:59</td>
+    </tr>
+
+    <tr>
+        <td>Value1</td>
+        <td>(sample value)</td>
+    </tr>
+
+    <tr>
+        <td>Value2</td>
+        <td>(sample value), (sample value)
+            (sample value), (sample value), (sample value)
+            (sample value), (sample value), (sample value)
+        </td>
+    </tr>
+
+    <tr>
+        <td>Value3</td>
+        <td>(sample value), (sample value), (sample value)</td>
+    </tr>
+</table>
+
+</body>
+
+
+</html>
