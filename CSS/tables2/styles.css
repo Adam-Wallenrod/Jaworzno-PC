@@ -1,0 +1,67 @@
+table {
+    border-collapse: collapse;
+    display: grid;
+    grid-template-columns:  minmax(150px, 1fr)
+                            minmax(150px, 1.67fr)
+                            minmax(150px, 1.67fr)
+                            minmax(150px, 1.67fr)
+                            minmax(150px, 3.33fr)
+                            minmax(150px, 1.67fr)
+                            minmax(150px, 3.33fr)
+                            minmax(150px, 1.67fr); ;
+
+}
+
+thead,
+tbody,
+tr {
+    display: contents;
+}
+
+
+tr {
+    color: dimgrey;
+    background-color: green;
+}
+
+tr:nth-child(2n) td {
+    background-color: burlywood;
+}
+
+
+th,
+td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 15px;
+}
+
+
+th {
+    position: sticky;
+    top: 0;
+    color: white;
+    background-color: cadetblue;
+    position: relative;
+}
+
+
+.handle-resize {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    opacity: 0.1;
+    cursor: col-resize;
+    background-color: black;
+    
+}
+
+.handle-resize:hover {
+    opacity: 0.7;
+}
+
+
+
